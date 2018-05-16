@@ -1,0 +1,117 @@
+# Go to Development/github.com/faas-netes/chart
+helm upgrade --install of-devoxx openfaas/ --namespace of-devoxx -f values.yaml
+
+# Add new function
+faas-cli new callme --lang node
+# Change gateway
+http://gateway-devoxx.laurentgrangeau.fr
+# Change image name
+# Build
+faas-cli build -f callme.yml
+# Push
+faas-cli push -f callme.yml
+# Deploy
+faas-cli deploy -f callme.yml
+# Invoke
+faas-cli invoke -f callme.yml callme
+# List
+faas-cli list
+# Remove
+faas-cli rm -f callme.yml
+
+# Add function from store
+nodeinfo && markdown && sentimentanalysis
+# Chain functions by cli
+echo -n "" | faas-cli invoke nodeinfo | faas-cli invoke func_markdown
+echo -n "What a suppa duppa university at devoxx" | faas-cli invoke sentimentanalysis
+# Chain functions by code
+Show issue-bot code
+
+# Deploy faasblog and test it
+faas-cli build -f faasblog.yml && faas-cli push -f faasblog.yml  && faas-cli deploy -f faasblog.yml
+
+# GraphQL commands
+mutation {
+  createAuthor(name: "Jane") {
+    id
+    name
+  }
+}
+
+mutation {
+  createPost(title: "Some Sample Post", bodyContent: "This is a sample post", author: "4350") {
+    id
+    title
+    bodyContent
+    author {
+      name
+    }
+    comments {
+      id
+    }
+  }
+}
+
+mutation {
+  createComment(content: "This is a comment", author: "4350", post: "4849") {
+    id
+    content
+    author {
+      name
+    }
+  }
+}
+
+query {
+  posts(authorId: "4350") {
+    id
+    title
+    bodyContent
+    author {
+      name
+    }
+    comments {
+      content
+      author {
+        name
+      }
+    }
+  }
+}
+
+# Issue-bot
+http://www.github.com/laurentgrangeau/bot-tester
+
+# Grafana
+http://grafana.laurentgrangeau.fr
+http://prometheus-devoxx.laurentgrangeau.fr
+admin / NIC9aVFw5al8KisSVM5eLPIcG0QhIv7gTGt1ZmET
+Dashboard : https://grafana.com/dashboards/3526
+Community : https://grafana.com/dashboards/3434
+
+# Stress test for autoscaling
+ab -k -c 20 -n 10000 http://gateway-devoxx.laurentgrangeau.fr/function/[changeme]
+
+# Istio
+http://istio.laurentgrangeau.fr/productpage
+
+# Go to /Users/laurentgrangeau/Development/istio-0.6.0/bin
+cd /Users/laurentgrangeau/Development/istio-0.6.0/bin
+
+# User-based testing (A/B testing)
+cat ../samples/bookinfo/kube/route-rule-reviews-test-v2.yaml
+./istioctl create -f ../samples/bookinfo/kube/route-rule-reviews-test-v2.yaml
+./istioctl get routerules
+
+# Canary release
+cat ../samples/bookinfo/kube/route-rule-reviews-50-v3.yaml
+./istioctl create -f ../samples/bookinfo/kube/route-rule-reviews-50-v3.yaml
+./istioctl get routerules
+
+# Blue/green deployment
+cat ../samples/bookinfo/kube/route-rule-reviews-v3.yaml
+./istioctl replace -f ../samples/bookinfo/kube/route-rule-reviews-v3.yaml
+./istioctl get routerules
+
+# Zipkin
+http://istio.laurentgrangeau.fr/zipkin/

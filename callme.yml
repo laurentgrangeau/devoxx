@@ -1,0 +1,9 @@
+provider:
+  name: faas
+  gateway: http://gateway-devoxx.laurentgrangeau.fr
+
+functions:
+  callme:
+    lang: node
+    handler: ./callme
+    image: laurentgrangeau/callme

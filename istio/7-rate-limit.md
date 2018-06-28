@@ -33,12 +33,16 @@ spec:
         sourceVersion: v2
       maxAmount: 1
       validDuration: 1s
+```
 
 # Create rate limit
+```bash
 istioctl create -f ratelimit-handler.yaml
+```
 
 # Create ratelimit-rule.yaml
 # Create a rule that apply quota
+```yaml
 apiVersion: config.istio.io/v1alpha2
 kind: quota
 metadata:

@@ -4,7 +4,7 @@ helm upgrade --install of-devoxx openfaas/ --namespace of-devoxx -f values.yaml
 # Add new function
 faas-cli new callme --lang node
 # Change gateway
-http://gateway-devoxx.laurentgrangeau.fr
+http://gateway.laurentgrangeau.fr
 # Change image name
 # Build
 faas-cli build -f callme.yml
@@ -90,7 +90,7 @@ Dashboard : https://grafana.com/dashboards/3526
 Community : https://grafana.com/dashboards/3434
 
 # Stress test for autoscaling
-ab -k -c 20 -n 10000 http://gateway-devoxx.laurentgrangeau.fr/function/[changeme]
+ab -k -c 20 -n 10000 http://gateway.laurentgrangeau.fr/function/[changeme]
 
 # Istio
 http://istio.laurentgrangeau.fr/productpage
